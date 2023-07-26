@@ -11,6 +11,7 @@ export const authOptions = {
     }),
     // ...add more providers here
   ],
+  secret: process.env.MY_SECRET,
   pages: {
     signIn: "/auth/signin",
   },
