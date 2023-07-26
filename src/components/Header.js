@@ -1,3 +1,4 @@
+import { modalState } from "@/atoms/modalAtom";
 import {
   MagnifyingGlassIcon,
   HomeIcon,
@@ -7,24 +8,33 @@ import {
   UserGroupIcon,
   HeartIcon,
 } from "@heroicons/react/24/outline";
-import Head from "next/head";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
 
 const Header = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const [modal, setModal] = useRecoilState(modalState);
+
   return (
-    <div className="shadow-sm bg-white sticky top-0 z-20 px-4">
-      <Head>
-        <link rel="icon" href="../favicon.ico" />
-      </Head>
+    <div className="shadow-sm bg-white sticky top-0 z-20 px-4 w-full">
       <div className="flex justify-between max-w-6xl  lg:mx-auto items-center">
         {/* Left */}
-        <div className="relative hidden lg:inline-grid cursor-pointer items-center ">
+        <div
+          onClick={() => router.push("/")}
+          className="relative hidden lg:inline-grid cursor-pointer items-center "
+        >
           <img
             className="h-10 object-contain"
             src={"https://links.papareact.com/ocw"}
             alt="Brand logo"
           />
         </div>
-        <div className="relative w-10 h-10 lg:hidden cursor-pointer">
+        <div
+          onClick={() => router.push("/")}
+          className="relative w-10 h-10 lg:hidden cursor-pointer"
+        >
           <img src={"https://links.papareact.com/jjm"} alt="Brand logo" />
         </div>
 
@@ -45,23 +55,37 @@ const Header = () => {
 
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
-          <HomeIcon className="navBtn" />
+          <HomeIcon onClick={() => router.push("/")} className="navBtn" />
           <Bars3Icon className="h-6 md:hidden cursor-pointer" />
-          <div className="relative navBtn">
-            <PaperAirplaneIcon className="navBtn -rotate-45" />
-            <div className="absolute -top-1 -right-3 text-sm h-5 w-5 bg-red-500 rounded-full flex items-center justify-center text-white">
-              3
-            </div>
-          </div>
-          <PlusCircleIcon className="navBtn" />
-          <UserGroupIcon className="navBtn" />
-          <HeartIcon className="navBtn" />
 
-          <img
-            className="h-10 rounded-full border cursor-pointer"
-            src="http://dergipark.org.tr/assets/app/images/buddy_sample.png"
-            alt="Profile picture"
-          />
+          {session ? (
+            <>
+              <div className="relative navBtn">
+                <PaperAirplaneIcon className="navBtn -rotate-45" />
+                <div className="absolute -top-1 -right-3 text-sm h-5 w-5 bg-red-500 rounded-full flex items-center justify-center text-white">
+                  3
+                </div>
+              </div>
+              <PlusCircleIcon
+                onClick={() => setModal(true)}
+                className="navBtn"
+              />
+              <UserGroupIcon className="navBtn" />
+              <HeartIcon className="navBtn" />
+
+              <img
+                onClick={signOut}
+                className="h-10 w-10 rounded-full border cursor-pointer"
+                src={session.user.image}
+                alt="Profile picture"
+              />
+              {/* <button className="text-xs font-bold text-blue-400">
+                Sign Out
+              </button> */}
+            </>
+          ) : (
+            <button onClick={signIn}>Sign In</button>
+          )}
         </div>
       </div>
     </div>

@@ -1,5 +1,3 @@
-"use client";
-
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 
