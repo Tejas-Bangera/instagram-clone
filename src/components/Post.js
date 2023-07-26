@@ -9,7 +9,7 @@ import {
 
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/24/solid";
 
-const Post = ({ username, avatar, postImg, caption }) => {
+const Post = ({ id, username, avatar, postImg, caption }) => {
   return (
     <div className="bg-white my-7 border rounded-md">
       {/* Header */}
