@@ -21,9 +21,7 @@ const Feed = () => {
       {session && (
         <section className="hidden md:col-span-1 xl:inline-grid">
           <div className="fixed top-15">
-            {/* MiniProfile */}
             <MiniProfile />
-            {/* Suggestions */}
             <Suggestions />
           </div>
         </section>

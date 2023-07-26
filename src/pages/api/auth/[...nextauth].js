@@ -1,3 +1,4 @@
+import { defaultAvatar } from "@/constants";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -21,6 +22,7 @@ export const authOptions = {
         .toLocaleLowerCase();
 
       session.user.uid = token.sub;
+      session.user.image = session.user.image || defaultAvatar;
 
       return session;
     },

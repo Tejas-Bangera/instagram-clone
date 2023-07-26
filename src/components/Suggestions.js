@@ -38,7 +38,9 @@ const Suggestions = () => {
               Works at {profile.companyName}
             </h3>
           </div>
-          <button className="text-blue-400 text-xs font-bold">Follow</button>
+          <button className="text-blue-500 text-sm font-semibold">
+            Follow
+          </button>
         </div>
       ))}
     </div>

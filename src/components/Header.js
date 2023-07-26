@@ -11,6 +11,8 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
+import ProfileDropDown from "./ProfileDropDown";
+import NavBtnDropDown from "./NavBtnDropDown";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -56,8 +58,8 @@ const Header = () => {
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon onClick={() => router.push("/")} className="navBtn" />
-          <Bars3Icon className="h-6 md:hidden cursor-pointer" />
-
+          {/* <Bars3Icon className="h-6 md:hidden cursor-pointer" /> */}
+          <NavBtnDropDown setModal={setModal} router={router} />
           {session ? (
             <>
               <div className="relative navBtn">
@@ -73,18 +75,12 @@ const Header = () => {
               <UserGroupIcon className="navBtn" />
               <HeartIcon className="navBtn" />
 
-              <img
-                onClick={signOut}
-                className="h-10 w-10 rounded-full border cursor-pointer"
-                src={session.user.image}
-                alt="Profile picture"
-              />
-              {/* <button className="text-xs font-bold text-blue-400">
-                Sign Out
-              </button> */}
+              <ProfileDropDown signOut={signOut} avatar={session.user.image} />
             </>
           ) : (
-            <button onClick={signIn}>Sign In</button>
+            <button className="text-blue-500 font-semibold" onClick={signIn}>
+              Sign In
+            </button>
           )}
         </div>
       </div>

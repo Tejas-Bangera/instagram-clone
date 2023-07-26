@@ -35,7 +35,9 @@ const signIn = ({ providers }) => {
                   src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
                   alt="Google logo"
                 />
-                Sign in with {provider.name}
+                <span className="text-blue-500 font-semibold">
+                  Sign in with {provider.name}
+                </span>
               </button>
             </div>
           ))}
