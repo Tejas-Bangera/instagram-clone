@@ -32,9 +32,14 @@ const Post = ({ id, username, avatar, postImg, caption }) => {
   const [hasLiked, setHasLiked] = useState(false);
   const inputRef = useRef(null);
 
-  function getComments() {
-    // Returns cleanup function
-    return onSnapshot(
+  useEffect(() => {
+    setHasLiked(
+      likes.findIndex((item) => item.id === session?.user?.uid) !== -1
+    );
+  }, [likes, session]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
       query(
         collection(db, "posts", id, "comments"),
         orderBy("timestamp", "desc")
@@ -43,33 +48,19 @@ const Post = ({ id, username, avatar, postImg, caption }) => {
         setComments(snapshot.docs);
       }
     );
-  }
 
-  function getLikes() {
-    // Returns cleanup function
-    return onSnapshot(
+    return unsubscribe;
+  }, [db, id]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
       query(collection(db, "posts", id, "likes")),
       (snapshot) => {
         setLikes(snapshot.docs);
       }
     );
-  }
 
-  useEffect(() => {
-    setHasLiked(
-      likes.findIndex((item) => item.id === session?.user?.uid) !== -1
-    );
-  }, [likes]);
-
-  useEffect(() => {
-    const unsubscribeComments = getComments();
-    const unsubscribeLikes = getLikes();
-
-    // Cleanup to remove snapshot listeners
-    return () => {
-      unsubscribeComments();
-      unsubscribeLikes();
-    };
+    return unsubscribe;
   }, [db, id]);
 
   async function likePost() {

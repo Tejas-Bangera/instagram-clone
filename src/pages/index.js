@@ -9,6 +9,10 @@ export default function Home() {
       <Head>
         <title>Instagram Clone</title>
         <link rel="icon" href=".//favicon.ico" />
+        <meta
+          name="google-site-verification"
+          content="8n3z2hIYrbvQ42my1MeOyRrRh511dYr28ODtypOOLJA"
+        />
       </Head>
       <Header />
       <Feed />
