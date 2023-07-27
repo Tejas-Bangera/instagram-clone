@@ -59,7 +59,11 @@ const Header = () => {
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon onClick={() => router.push("/")} className="navBtn" />
           {/* <Bars3Icon className="h-6 md:hidden cursor-pointer" /> */}
-          <NavBtnDropDown setModal={setModal} router={router} />
+          <NavBtnDropDown
+            session={session}
+            setModal={setModal}
+            router={router}
+          />
           {session ? (
             <>
               <div className="relative navBtn">

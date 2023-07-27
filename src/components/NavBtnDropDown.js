@@ -13,7 +13,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBtnDropDown({ setModal, router }) {
+export default function NavBtnDropDown({ session, setModal, router }) {
   return (
     <Menu as="div" className="relative inline-block text-left md:hidden">
       <div>
@@ -33,32 +33,36 @@ export default function NavBtnDropDown({ setModal, router }) {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-2 px-5">
           <div className="py-1">
-            <Menu.Item className="mb-2">
+            <Menu.Item>
               <HomeIcon
                 onClick={() => router.push("/")}
                 className="navDrpDwnBtn"
               />
             </Menu.Item>
-            <Menu.Item className="mb-2">
-              <div className="relative w-max navDrpDwnBtn ">
-                <PaperAirplaneIcon className="navDrpDwnBtn -rotate-45" />
-                <div className="absolute -top-1 -right-3 text-sm h-5 w-5 bg-red-500 rounded-full flex items-center justify-center text-white">
-                  3
-                </div>
-              </div>
-            </Menu.Item>
-            <Menu.Item className="mb-2">
-              <PlusCircleIcon
-                onClick={() => setModal(true)}
-                className="navDrpDwnBtn"
-              />
-            </Menu.Item>
-            <Menu.Item className="mb-2">
-              <UserGroupIcon className="navDrpDwnBtn" />
-            </Menu.Item>
-            <Menu.Item className="">
-              <HeartIcon className="navDrpDwnBtn" />
-            </Menu.Item>
+            {session && (
+              <>
+                <Menu.Item className="mt-2">
+                  <div className="relative w-max navDrpDwnBtn ">
+                    <PaperAirplaneIcon className="navDrpDwnBtn -rotate-45" />
+                    <div className="absolute -top-1 -right-3 text-sm h-5 w-5 bg-red-500 rounded-full flex items-center justify-center text-white">
+                      3
+                    </div>
+                  </div>
+                </Menu.Item>
+                <Menu.Item className="mt-2">
+                  <PlusCircleIcon
+                    onClick={() => setModal(true)}
+                    className="navDrpDwnBtn"
+                  />
+                </Menu.Item>
+                <Menu.Item className="mt-2">
+                  <UserGroupIcon className="navDrpDwnBtn" />
+                </Menu.Item>
+                <Menu.Item className="mt-2">
+                  <HeartIcon className="navDrpDwnBtn" />
+                </Menu.Item>
+              </>
+            )}
           </div>
         </Menu.Items>
       </Transition>
