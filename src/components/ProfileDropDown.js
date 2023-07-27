@@ -1,3 +1,4 @@
+import { onError } from "@/constants";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
@@ -13,6 +14,7 @@ const ProfileDropDown = ({ signOut, avatar }) => {
           <img
             className="h-10 w-10 rounded-full border cursor-pointer mt-1"
             src={avatar}
+            onError={onError}
             alt="Profile picture"
           />
         </Menu.Button>

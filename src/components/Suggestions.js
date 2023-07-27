@@ -1,3 +1,4 @@
+import { onError } from "@/constants";
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 
@@ -30,6 +31,7 @@ const Suggestions = () => {
           <img
             src={profile.avatar}
             className="w-10 h-10 rounded-full p-[2px] border"
+            onError={onError}
             alt="Profile picture"
           />
           <div className="flex-1 mx-4">

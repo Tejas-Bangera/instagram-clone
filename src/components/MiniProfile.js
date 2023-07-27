@@ -1,3 +1,4 @@
+import { onError } from "@/constants";
 import { signOut, useSession } from "next-auth/react";
 
 const MiniProfile = () => {
@@ -8,6 +9,7 @@ const MiniProfile = () => {
       <img
         className="w-16 h-16 object-contain rounded-full border p-[2px]"
         src={session?.user?.image}
+        onError={onError}
         alt="Profile picture"
       />
       <div className="flex-1 mx-4">

@@ -2,7 +2,6 @@ import { modalState } from "@/atoms/modalAtom";
 import {
   MagnifyingGlassIcon,
   HomeIcon,
-  Bars3Icon,
   PaperAirplaneIcon,
   PlusCircleIcon,
   UserGroupIcon,

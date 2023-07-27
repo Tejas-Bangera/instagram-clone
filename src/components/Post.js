@@ -1,3 +1,4 @@
+import { onError } from "@/constants";
 import { db } from "@/firebase";
 import {
   EllipsisHorizontalIcon,
@@ -99,6 +100,7 @@ const Post = ({ id, username, avatar, postImg, caption }) => {
         <img
           className="h-12 w-12 object-contain border p-1 mr-3 rounded-full"
           src={avatar}
+          onError={onError}
           alt="profile picture"
         />
         <p className="flex-grow font-bold">{username}</p>
@@ -145,6 +147,7 @@ const Post = ({ id, username, avatar, postImg, caption }) => {
               <img
                 className="h-7 rounded-full"
                 src={item.data().userImage}
+                onError={onError}
                 alt="profile pic"
               />
               <p className="text-sm flex-1">
