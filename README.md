@@ -42,6 +42,8 @@ Shows latest posts with likes and comments from you and other users.
 
 ## Create a post
 
+https://github.com/Tejas-Bangera/instagram-clone/assets/92363050/062e34c6-ba59-4cd9-b8fd-e4dece8cf02a
+
 <video src="./readme_media/IG-create-a-post_AdobeExpress.mp4" controls title="Title"></video>
 
 - Click on the plus icon on the navbar to create a post
@@ -49,6 +51,8 @@ Shows latest posts with likes and comments from you and other users.
 - Enter a caption for the post and upload!
 
 ## Like, Comment and scroll through the posts!
+
+https://github.com/Tejas-Bangera/instagram-clone/assets/92363050/c9c7b7bf-0d72-48f3-baf2-5ab344df5439
 
 <video src="./readme_media/IG-like-comment-scroll_AdobeExpress.mp4" controls title="Title"></video>
 
